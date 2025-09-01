@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs5e4skl4ub04"]
+
+[ext_resource type="Script" uid="uid://b4psjqtwxtgxf" path="res://game/draggable_camera.gd" id="1_l1rk1"]
+[ext_resource type="PackedScene" uid="uid://c5uuuhrwasagt" path="res://game/board/square/square_tile.tscn" id="2_vasa2"]
+
+[node name="Game" type="Node2D"]
+
+[node name="SquareTile" parent="." instance=ExtResource("2_vasa2")]
+position = Vector2(-16, -16)
+
+[node name="DraggableCamera" type="Camera2D" parent="."]
+script = ExtResource("1_l1rk1")
+
+[node name="UI" type="Control" parent="DraggableCamera"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
