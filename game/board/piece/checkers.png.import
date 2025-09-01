@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxhr46va7kn16"
-path="res://.godot/imported/hexes.png-734fd81b26c769b5e4c8e319f74ece63.ctex"
+uid="uid://fqctwirerqtv"
+path="res://.godot/imported/checkers.png-74001cee6ef3387a5a9b5c9ce76043c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/board/hex/hexes.png"
-dest_files=["res://.godot/imported/hexes.png-734fd81b26c769b5e4c8e319f74ece63.ctex"]
+source_file="res://game/board/piece/checkers.png"
+dest_files=["res://.godot/imported/checkers.png-74001cee6ef3387a5a9b5c9ce76043c0.ctex"]
 
 [params]
 

@@ -1,12 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs5e4skl4ub04"]
+[gd_scene load_steps=10 format=3 uid="uid://cs5e4skl4ub04"]
 
+[ext_resource type="Shader" uid="uid://dx7uvjmfnf3k4" path="res://game/board/recolor.gdshader" id="1_dxrkv"]
+[ext_resource type="Script" uid="uid://bfs6p6teyhp8i" path="res://game/board/board.gd" id="1_h7iqs"]
 [ext_resource type="Script" uid="uid://b4psjqtwxtgxf" path="res://game/draggable_camera.gd" id="1_l1rk1"]
-[ext_resource type="PackedScene" uid="uid://c5uuuhrwasagt" path="res://game/board/square/square_tile.tscn" id="2_vasa2"]
+[ext_resource type="Texture2D" uid="uid://cdg51ry5ky8wo" path="res://game/board/palettes/classic.png" id="2_dakft"]
+[ext_resource type="PackedScene" uid="uid://c5uuuhrwasagt" path="res://game/board/tile/square/square_tile.tscn" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://dkwws0bryivor" path="res://game/board/piece/piece.tscn" id="5_u5opy"]
+[ext_resource type="Texture2D" uid="uid://fqctwirerqtv" path="res://game/board/piece/checkers.png" id="7_y36n6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5opy"]
+shader = ExtResource("1_dxrkv")
+shader_parameter/palette = ExtResource("2_dakft")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y36n6"]
+resource_local_to_scene = true
+atlas = ExtResource("7_y36n6")
+region = Rect2(24, 0, 24, 24)
 
 [node name="Game" type="Node2D"]
 
-[node name="SquareTile" parent="." instance=ExtResource("2_vasa2")]
-position = Vector2(-16, -16)
+[node name="Board" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_u5opy")
+script = ExtResource("1_h7iqs")
+tile_scene = ExtResource("2_vasa2")
+light_directions = Array[Vector2i]([Vector2i(0, 1), Vector2i(1, 0)])
+dark_directions = Array[Vector2i]([Vector2i(0, -1), Vector2i(-1, 0)])
+
+[node name="Piece" parent="Board" instance=ExtResource("5_u5opy")]
+texture = SubResource("AtlasTexture_y36n6")
 
 [node name="DraggableCamera" type="Camera2D" parent="."]
 script = ExtResource("1_l1rk1")

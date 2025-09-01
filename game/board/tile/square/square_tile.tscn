@@ -1,13 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5uuuhrwasagt"]
 
-[ext_resource type="Texture2D" uid="uid://b8huycaiugjq4" path="res://game/board/square/squares.png" id="1_fb2ca"]
-[ext_resource type="Script" uid="uid://dw285sy5fxssi" path="res://game/board/tile.gd" id="1_s46vs"]
+[ext_resource type="Texture2D" uid="uid://b8huycaiugjq4" path="res://game/board/tile/square/squares.png" id="1_fb2ca"]
+[ext_resource type="Script" uid="uid://dw285sy5fxssi" path="res://game/board/tile/tile.gd" id="1_s46vs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntfmg"]
+resource_local_to_scene = true
 atlas = ExtResource("1_fb2ca")
 region = Rect2(0, 0, 32, 32)
 
 [node name="SquareTile" type="Sprite2D"]
+use_parent_material = true
 texture = SubResource("AtlasTexture_ntfmg")
 centered = false
 script = ExtResource("1_s46vs")
