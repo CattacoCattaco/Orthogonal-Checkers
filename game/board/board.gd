@@ -48,7 +48,7 @@ func _place_tile(board_pos: Vector2i, color: Tile.TileColor, place_dark: bool, p
 	tiles[board_pos] = tile
 	
 	tile.pos = board_pos
-	tile.position = tile.pos * 32 + Vector2i(-board_size * 32 + 16, -board_size * 32)
+	tile.position = tile.pos * 32 + get_bounds().position
 	tile.color = color
 	
 	if place_dark or place_light or place_mid:
@@ -58,6 +58,10 @@ func _place_tile(board_pos: Vector2i, color: Tile.TileColor, place_dark: bool, p
 				else Piece.PieceColor.MID
 		)
 		
-		print(piece_color)
-		
 		tile.add_piece(piece_color)
+
+
+func get_bounds() -> Rect2i:
+	var rect_pos := Vector2i(-board_size * 32 + 16, -board_size * 32)
+	var rect_size := Vector2i(board_size * 2 - 1, board_size * 2) * 32
+	return Rect2i(rect_pos, rect_size)

@@ -31,4 +31,3 @@ func add_piece(piece_color: Piece.PieceColor) -> void:
 	
 	piece.pos = pos
 	piece.color = piece_color
-	print("?: ", piece.color)
