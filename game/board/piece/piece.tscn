@@ -1,15 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkwws0bryivor"]
+[gd_scene load_steps=5 format=3 uid="uid://dkwws0bryivor"]
 
 [ext_resource type="Texture2D" uid="uid://fqctwirerqtv" path="res://game/board/piece/checkers.png" id="1_4um4g"]
 [ext_resource type="Script" uid="uid://b33lijlcdbw3y" path="res://game/board/piece/piece.gd" id="2_4um4g"]
+[ext_resource type="BitMap" uid="uid://bd0p5yl4ruutc" path="res://game/board/piece/checker.bmp" id="3_rfci2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntfmg"]
 resource_local_to_scene = true
 atlas = ExtResource("1_4um4g")
 region = Rect2(0, 0, 24, 24)
 
-[node name="Piece" type="Sprite2D"]
+[node name="Piece" type="Sprite2D" node_paths=PackedStringArray("button")]
 use_parent_material = true
 texture = SubResource("AtlasTexture_ntfmg")
 centered = false
 script = ExtResource("2_4um4g")
+button = NodePath("TextureButton")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_click_mask = ExtResource("3_rfci2")

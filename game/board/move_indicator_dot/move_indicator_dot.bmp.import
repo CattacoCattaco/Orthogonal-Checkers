@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bhp8552hg2o47"
+path="res://.godot/imported/move_indicator_dot.bmp-e8d263ccb6afcf233cb2de7b48eee636.res"
+
+[deps]
+
+source_file="res://game/board/move_indicator_dot/move_indicator_dot.bmp"
+dest_files=["res://.godot/imported/move_indicator_dot.bmp-e8d263ccb6afcf233cb2de7b48eee636.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

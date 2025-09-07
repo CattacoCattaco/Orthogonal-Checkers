@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ksoiy85itgvv"]
+
+[ext_resource type="Texture2D" uid="uid://bfpa7qie11mos" path="res://game/board/move_indicator_dot/move_indicator_dot.png" id="1_17n6o"]
+[ext_resource type="Script" uid="uid://b6iy0qqdragob" path="res://game/board/move_indicator_dot/move_indicator_dot.gd" id="2_tdad5"]
+[ext_resource type="BitMap" uid="uid://bhp8552hg2o47" path="res://game/board/move_indicator_dot/move_indicator_dot.bmp" id="3_05foi"]
+
+[node name="MoveIndicatorDot" type="Sprite2D"]
+use_parent_material = true
+texture = ExtResource("1_17n6o")
+centered = false
+script = ExtResource("2_tdad5")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_click_mask = ExtResource("3_05foi")

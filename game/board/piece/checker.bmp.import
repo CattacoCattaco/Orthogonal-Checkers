@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bd0p5yl4ruutc"
+path="res://.godot/imported/checker.bmp-76b13dbd239d5f1cfb0fdfe43e8dab0f.res"
+
+[deps]
+
+source_file="res://game/board/piece/checker.bmp"
+dest_files=["res://.godot/imported/checker.bmp-76b13dbd239d5f1cfb0fdfe43e8dab0f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

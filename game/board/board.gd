@@ -16,6 +16,10 @@ extends Node2D
 
 var tiles: Dictionary[Vector2i, Tile]
 
+var move_dots: Array[MoveIndicatorDot]
+
+var selected_piece: Piece
+
 
 func _ready() -> void:
 	_place_tiles()
@@ -50,6 +54,7 @@ func _place_tile(board_pos: Vector2i, color: Tile.TileColor, place_dark: bool, p
 	tile.pos = board_pos
 	tile.position = tile.pos * 32 + get_bounds().position
 	tile.color = color
+	tile.board = self
 	
 	if place_dark or place_light or place_mid:
 		var piece_color: Piece.PieceColor = (
