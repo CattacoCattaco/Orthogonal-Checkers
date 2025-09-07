@@ -16,6 +16,8 @@ var selected_piece: Piece
 
 var turn: Piece.PieceColor = Piece.PieceColor.LIGHT
 
+var is_in_chain_jump: bool = false
+
 
 func _ready() -> void:
 	_place_tiles()
@@ -80,6 +82,8 @@ func get_bounds() -> Rect2i:
 
 
 func next_turn() -> void:
+	is_in_chain_jump = false
+	
 	match turn:
 		Piece.PieceColor.LIGHT:
 			turn = Piece.PieceColor.DARK

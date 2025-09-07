@@ -44,6 +44,9 @@ func deselect() -> void:
 	
 	if board.selected_piece == self:
 		board.selected_piece = null
+	
+	if board.is_in_chain_jump and board.turn == color:
+		board.next_turn()
 
 
 func select() -> void:
@@ -97,10 +100,13 @@ func get_move_directions() -> Array[Vector2i]:
 
 func can_chain_jump() -> bool:
 	match type:
-		PieceType.CHECKER:
-			return find_moves(true)
-		PieceType.CHECKER_KING:
-			return find_moves(true)
+		PieceType.CHECKER, PieceType.CHECKER_KING:
+			if find_moves(true):
+				board.is_in_chain_jump = true
+				board.selected_piece = self
+				return true
+			else:
+				return false
 		_:
 			return false
 
