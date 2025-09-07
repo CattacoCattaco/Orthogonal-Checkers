@@ -4,11 +4,12 @@
 [ext_resource type="Script" uid="uid://b6iy0qqdragob" path="res://game/board/move_indicator_dot/move_indicator_dot.gd" id="2_tdad5"]
 [ext_resource type="BitMap" uid="uid://bhp8552hg2o47" path="res://game/board/move_indicator_dot/move_indicator_dot.bmp" id="3_05foi"]
 
-[node name="MoveIndicatorDot" type="Sprite2D"]
+[node name="MoveIndicatorDot" type="Sprite2D" node_paths=PackedStringArray("button")]
 use_parent_material = true
 texture = ExtResource("1_17n6o")
 centered = false
 script = ExtResource("2_tdad5")
+button = NodePath("TextureButton")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 anchors_preset = 15
