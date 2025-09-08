@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cs5e4skl4ub04"]
 
-[ext_resource type="Shader" uid="uid://dx7uvjmfnf3k4" path="res://game/board/recolor.gdshader" id="1_dxrkv"]
+[ext_resource type="Shader" uid="uid://dx7uvjmfnf3k4" path="res://game/board/palettes/recolor.gdshader" id="1_dxrkv"]
 [ext_resource type="Script" uid="uid://bfs6p6teyhp8i" path="res://game/board/board.gd" id="1_h7iqs"]
 [ext_resource type="Script" uid="uid://b4psjqtwxtgxf" path="res://game/draggable_camera.gd" id="1_l1rk1"]
 [ext_resource type="Texture2D" uid="uid://cdg51ry5ky8wo" path="res://game/board/palettes/classic.png" id="2_dakft"]
-[ext_resource type="PackedScene" uid="uid://cpsghawqcekgv" path="res://game/board/tile/hex/hex_tile.tscn" id="4_dxrkv"]
+[ext_resource type="Theme" uid="uid://c0s3xkss3h2gm" path="res://play_menu/ui/themes/text_bold.tres" id="5_dxrkv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u5opy"]
 shader = ExtResource("1_dxrkv")
@@ -12,11 +12,12 @@ shader_parameter/palette = ExtResource("2_dakft")
 
 [node name="Game" type="Node2D"]
 
-[node name="Board" type="Node2D" parent="."]
+[node name="Board" type="Node2D" parent="." node_paths=PackedStringArray("victory_screen", "victory_label")]
 material = SubResource("ShaderMaterial_u5opy")
 script = ExtResource("1_h7iqs")
-tile_scene = ExtResource("4_dxrkv")
 shape = 2
+victory_screen = NodePath("../DraggableCamera/UI/VictoryScreen")
+victory_label = NodePath("../DraggableCamera/UI/VictoryScreen/VictoryLabel")
 
 [node name="DraggableCamera" type="Camera2D" parent="." node_paths=PackedStringArray("board")]
 script = ExtResource("1_l1rk1")
@@ -34,3 +35,26 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="VictoryScreen" type="ColorRect" parent="DraggableCamera/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.47, 0.47, 0.47, 1)
+
+[node name="VictoryLabel" type="Label" parent="DraggableCamera/UI/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_dxrkv")
+theme_override_font_sizes/font_size = 72
+text = "Blank Won!"
+horizontal_alignment = 1
+vertical_alignment = 1

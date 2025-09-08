@@ -7,9 +7,6 @@ enum BoardShape {
 	HEXES_2_PLAYER,
 	HEXES_3_PLAYER,
 }
-
-## The scene of the tiles
-@export var tile_scene: PackedScene
 ## The shape of the board
 @export var shape: BoardShape
 ## The number of tiles in each diagonal/row
@@ -17,9 +14,21 @@ enum BoardShape {
 ## The number of diagonals with checkers on them that each side gets
 @export var checker_diagonals: int = 3
 
+@export var victory_screen: ColorRect
+@export var victory_label: Label
+
+## The scene of the tiles
+var tile_scene: PackedScene
+
+var play_menu: PlayMenu
+
 var tiles: Dictionary[Vector2i, Tile]
 
 var move_dots: Array[MoveIndicatorDot]
+
+var light_pieces: Array[Piece]
+var dark_pieces: Array[Piece]
+var mid_pieces: Array[Piece]
 
 var selected_piece: Piece
 
@@ -195,3 +204,15 @@ func next_turn() -> void:
 			turn = Piece.PieceColor.DARK
 		Piece.PieceColor.DARK:
 			turn = Piece.PieceColor.LIGHT
+
+
+func win(color: Piece.PieceColor):
+	victory_screen.show()
+	
+	match color:
+		Piece.PieceColor.LIGHT:
+			victory_label.text = "Light won!"
+		Piece.PieceColor.DARK:
+			victory_label.text = "Dark won!"
+		Piece.PieceColor.MID:
+			victory_label.text = "Mid-color won!"

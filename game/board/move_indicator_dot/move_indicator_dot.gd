@@ -27,6 +27,11 @@ func _on_button_pressed() -> void:
 		board.tiles[captured_piece.pos].remove_piece()
 		is_jump = true
 	
+	if len(board.light_pieces) == 0:
+		board.win(Piece.PieceColor.DARK)
+	elif len(board.dark_pieces) == 0:
+		board.win(Piece.PieceColor.LIGHT)
+	
 	if board.tiles[pos].type == Tile.TileType.KING:
 		if board.tiles[pos].piece.can_promote():
 			board.tiles[pos].piece.promote()

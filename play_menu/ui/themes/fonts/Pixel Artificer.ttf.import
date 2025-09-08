@@ -1,0 +1,35 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bw4rw1yib7apo"
+path="res://.godot/imported/Pixel Artificer.ttf-2b7a8338574777be49edd1777dd99b42.fontdata"
+
+[deps]
+
+source_file="res://play_menu/ui/themes/fonts/Pixel Artificer.ttf"
+dest_files=["res://.godot/imported/Pixel Artificer.ttf-2b7a8338574777be49edd1777dd99b42.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=2
+subpixel_positioning=0
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

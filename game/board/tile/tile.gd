@@ -56,6 +56,14 @@ func add_piece(piece_color: Piece.PieceColor, piece_type: Piece.PieceType) -> vo
 	piece = PIECE_SCENE.instantiate()
 	add_child(piece)
 	
+	match piece_color:
+		Piece.PieceColor.LIGHT:
+			board.light_pieces.append(piece)
+		Piece.PieceColor.DARK:
+			board.dark_pieces.append(piece)
+		Piece.PieceColor.MID:
+			board.mid_pieces.append(piece)
+	
 	var atlas_region: Rect2 = texture.region
 	piece.position = (atlas_region.size as Vector2i - Vector2i(24, 24)) / 2
 	
@@ -66,6 +74,14 @@ func add_piece(piece_color: Piece.PieceColor, piece_type: Piece.PieceType) -> vo
 
 
 func remove_piece() -> void:
+	match piece.color:
+		Piece.PieceColor.LIGHT:
+			board.light_pieces.erase(piece)
+		Piece.PieceColor.DARK:
+			board.dark_pieces.erase(piece)
+		Piece.PieceColor.MID:
+			board.mid_pieces.erase(piece)
+	
 	piece.queue_free()
 	piece = null
 

@@ -1,9 +1,127 @@
-[gd_scene format=3 uid="uid://bndsysd5u0fcx"]
+[gd_scene load_steps=13 format=3 uid="uid://bndsysd5u0fcx"]
 
-[node name="PlayMenu" type="Control"]
+[ext_resource type="Shader" uid="uid://dx7uvjmfnf3k4" path="res://game/board/palettes/recolor.gdshader" id="1_q84om"]
+[ext_resource type="Script" uid="uid://delsuwrjwflex" path="res://play_menu/play_menu.gd" id="1_su1uf"]
+[ext_resource type="Texture2D" uid="uid://cdg51ry5ky8wo" path="res://game/board/palettes/classic.png" id="2_anj1v"]
+[ext_resource type="PackedScene" uid="uid://cs5e4skl4ub04" path="res://game/game.tscn" id="2_iftl6"]
+[ext_resource type="Texture2D" uid="uid://c4ij2l6bqck4y" path="res://play_menu/ui/game_creation_menu/options_menu.png" id="3_8lhre"]
+[ext_resource type="Theme" uid="uid://c0s3xkss3h2gm" path="res://play_menu/ui/themes/text_bold.tres" id="4_eemjw"]
+[ext_resource type="Theme" uid="uid://dyhdck1ku2aua" path="res://play_menu/ui/themes/text_normal.tres" id="5_su1uf"]
+[ext_resource type="Texture2D" uid="uid://c4se7q83j0pl6" path="res://play_menu/ui/themes/button_normal.png" id="6_iftl6"]
+[ext_resource type="Texture2D" uid="uid://bs0ejtbcveiuo" path="res://play_menu/ui/themes/button_pressed.png" id="7_7sot4"]
+[ext_resource type="Texture2D" uid="uid://bnd081nklaef4" path="res://play_menu/ui/themes/button_hovered.png" id="8_q6uqk"]
+[ext_resource type="BitMap" uid="uid://f1sfxusijj3b" path="res://play_menu/ui/themes/button.bmp" id="9_mj5lo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6bo5"]
+shader = ExtResource("1_q84om")
+shader_parameter/palette = ExtResource("2_anj1v")
+
+[node name="PlayMenu" type="Control" node_paths=PackedStringArray("board_type_options", "board_size_box", "checker_diagonals_box", "start_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_su1uf")
+board_scene = ExtResource("2_iftl6")
+board_type_options = NodePath("GameOptionsMenu/VBoxContainer/GridContainer/BoardTypeOptions")
+board_size_box = NodePath("GameOptionsMenu/VBoxContainer/GridContainer/BoardSizeBox")
+checker_diagonals_box = NodePath("GameOptionsMenu/VBoxContainer/GridContainer/CheckerDiagonalsBox")
+start_button = NodePath("GameOptionsMenu/VBoxContainer/StartButton")
+
+[node name="GameOptionsMenu" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_l6bo5")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8lhre")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOptionsMenu"]
+custom_minimum_size = Vector2(290, 260)
+layout_mode = 2
+offset_left = 5.0
+offset_top = 30.0
+offset_right = 148.0
+offset_bottom = 42.0
+
+[node name="GridContainer" type="GridContainer" parent="GameOptionsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+columns = 2
+
+[node name="BoardTypeLabel" type="Label" parent="GameOptionsMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_eemjw")
+text = "Board Type:"
+
+[node name="BoardTypeOptions" type="OptionButton" parent="GameOptionsMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("5_su1uf")
+selected = 0
+item_count = 2
+popup/item_0/text = "Square"
+popup/item_0/id = 0
+popup/item_1/text = "Hex"
+popup/item_1/id = 1
+
+[node name="BoardSizeLabel" type="Label" parent="GameOptionsMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_eemjw")
+text = "Board Size:"
+
+[node name="BoardSizeBox" type="SpinBox" parent="GameOptionsMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("5_su1uf")
+min_value = 3.0
+max_value = 8.0
+value = 4.0
+rounded = true
+
+[node name="CheckerDiagonalsLabel" type="Label" parent="GameOptionsMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_eemjw")
+text = "Checker Diagonals:"
+
+[node name="CheckerDiagonalsBox" type="SpinBox" parent="GameOptionsMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("5_su1uf")
+min_value = 2.0
+max_value = 3.0
+value = 3.0
+rounded = true
+
+[node name="StartButton" type="TextureButton" parent="GameOptionsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_iftl6")
+texture_pressed = ExtResource("7_7sot4")
+texture_hover = ExtResource("8_q6uqk")
+texture_click_mask = ExtResource("9_mj5lo")
+
+[node name="StartLabel" type="Label" parent="GameOptionsMenu/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_eemjw")
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
