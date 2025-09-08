@@ -1,6 +1,12 @@
 class_name Tile
 extends Sprite2D
 
+enum TileShape {
+	SQUARE,
+	HEX_2_WAY,
+	HEX_3_WAY,
+}
+
 enum TileColor {
 	LIGHT,
 	DARK,
@@ -24,6 +30,8 @@ var color: TileColor = TileColor.LIGHT:
 
 var type: TileType = TileType.NORMAL:
 	set = _set_type
+
+var shape: TileShape = TileShape.SQUARE
 
 var pos: Vector2i
 

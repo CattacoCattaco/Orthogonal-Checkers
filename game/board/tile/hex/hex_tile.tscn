@@ -6,7 +6,7 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntfmg"]
 resource_local_to_scene = true
 atlas = ExtResource("1_3hve4")
-region = Rect2(0, 0, 30, 26)
+region = Rect2(0, 0, 26, 30)
 
 [node name="HexTile" type="Sprite2D"]
 use_parent_material = true

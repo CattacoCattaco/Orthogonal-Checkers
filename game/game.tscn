@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bfs6p6teyhp8i" path="res://game/board/board.gd" id="1_h7iqs"]
 [ext_resource type="Script" uid="uid://b4psjqtwxtgxf" path="res://game/draggable_camera.gd" id="1_l1rk1"]
 [ext_resource type="Texture2D" uid="uid://cdg51ry5ky8wo" path="res://game/board/palettes/classic.png" id="2_dakft"]
-[ext_resource type="PackedScene" uid="uid://c5uuuhrwasagt" path="res://game/board/tile/square/square_tile.tscn" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://cpsghawqcekgv" path="res://game/board/tile/hex/hex_tile.tscn" id="4_dxrkv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u5opy"]
 shader = ExtResource("1_dxrkv")
@@ -15,7 +15,8 @@ shader_parameter/palette = ExtResource("2_dakft")
 [node name="Board" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_u5opy")
 script = ExtResource("1_h7iqs")
-tile_scene = ExtResource("2_vasa2")
+tile_scene = ExtResource("4_dxrkv")
+shape = 2
 
 [node name="DraggableCamera" type="Camera2D" parent="." node_paths=PackedStringArray("board")]
 script = ExtResource("1_l1rk1")

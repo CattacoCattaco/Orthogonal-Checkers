@@ -33,6 +33,9 @@ func _on_button_pressed() -> void:
 	if board.selected_piece != self:
 		select()
 	else:
+		if board.is_in_chain_jump and board.turn == color:
+			board.next_turn()
+		
 		deselect()
 
 
@@ -44,9 +47,6 @@ func deselect() -> void:
 	
 	if board.selected_piece == self:
 		board.selected_piece = null
-	
-	if board.is_in_chain_jump and board.turn == color:
-		board.next_turn()
 
 
 func select() -> void:
@@ -86,6 +86,18 @@ func find_moves(jumps_only: bool = false) -> bool:
 
 
 func get_move_directions() -> Array[Vector2i]:
+	match board.tiles[pos].shape:
+		Tile.TileShape.SQUARE:
+			return _get_square_move_directions()
+		Tile.TileShape.HEX_2_WAY:
+			return _get_hex_2_way_move_directions()
+		Tile.TileShape.HEX_3_WAY:
+			return _get_hex_3_way_move_directions()
+	
+	return []
+
+
+func _get_square_move_directions() -> Array[Vector2i]:
 	match type:
 		PieceType.CHECKER:
 			if color == PieceColor.LIGHT:
@@ -94,6 +106,48 @@ func get_move_directions() -> Array[Vector2i]:
 				return [Vector2i(1, 0), Vector2i(0, 1)]
 		PieceType.CHECKER_KING:
 			return [Vector2i(-1, 0), Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 1)]
+	
+	return []
+
+
+func _get_hex_2_way_move_directions() -> Array[Vector2i]:
+	match type:
+		PieceType.CHECKER:
+			if color == PieceColor.LIGHT:
+				return [Vector2i(-1, 0), Vector2i(0, 1), Vector2i(-1, -1)]
+			elif color == PieceColor.DARK:
+				return [Vector2i(1, 0), Vector2i(0, -1), Vector2i(1, 1)]
+		PieceType.CHECKER_KING:
+			return [
+				Vector2i(-1, 0),
+				Vector2i(0, -1),
+				Vector2i(-1, -1),
+				Vector2i(1, 0),
+				Vector2i(0, 1),
+				Vector2i(1, 1),
+			]
+	
+	return []
+
+
+func _get_hex_3_way_move_directions() -> Array[Vector2i]:
+	match type:
+		PieceType.CHECKER:
+			if color == PieceColor.LIGHT:
+				return [Vector2i(-1, 0), Vector2i(-1, -1)]
+			elif color == PieceColor.DARK:
+				return [Vector2i(1, 0), Vector2i(0, -1)]
+			else:
+				return [Vector2i(0, 1), Vector2i(1, 1)]
+		PieceType.CHECKER_KING:
+			return [
+				Vector2i(-1, 0),
+				Vector2i(0, -1),
+				Vector2i(-1, -1),
+				Vector2i(1, 0),
+				Vector2i(0, 1),
+				Vector2i(1, 1),
+			]
 	
 	return []
 
